@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tim Hansen — television editor working across science, history, culture and human stories.">
+  <title>Tim Hansen — Editor</title>
+
+  <style>
+    :root {
+      --ink: #f4f1ea;
+      --muted: rgba(244, 241, 234, 0.68);
+      --line: rgba(244, 241, 234, 0.2);
+      --bg: #101010;
+      --accent: #d7ff55;
+      --page-pad: clamp(1.25rem, 4vw, 4rem);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 75% 20%, rgba(94, 74, 255, 0.22), transparent 32%),
+        radial-gradient(circle at 10% 80%, rgba(255, 88, 54, 0.18), transparent 30%),
+        var(--bg);
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0.08;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem var(--page-pad);
+      border-bottom: 1px solid transparent;
+      transition: background .25s ease, border-color .25s ease;
+    }
+
+    .site-header.scrolled {
+      background: rgba(16, 16, 16, 0.78);
+      backdrop-filter: blur(14px);
+      border-color: var(--line);
+    }
+
+    .wordmark {
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: .08em;
+      font-size: .82rem;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+    }
+
+    .nav a {
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: .72rem;
+      color: var(--muted);
+      transition: color .2s ease;
+    }
+
+    .nav a:hover { color: var(--ink); }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding: 8rem var(--page-pad) 2rem;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(to bottom, rgba(16,16,16,.08), rgba(16,16,16,.58)),
+        linear-gradient(115deg, rgba(255,255,255,.03), transparent 45%);
+    }
+
+    .orb {
+      position: absolute;
+      width: min(52vw, 760px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      right: -12vw;
+      top: 8vh;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 35% 35%, #f6f1d2 0 4%, #e66e43 13%, #3d2a7a 38%, #121212 72%);
+      filter: saturate(.85) contrast(1.08);
+      box-shadow: 0 0 110px rgba(93, 72, 255, .14);
+      animation: drift 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to   { transform: translate3d(-2vw, 1.8vh, 0) scale(1.03); }
+    }
+
+    .hero-copy {
+      align-self: center;
+      max-width: 1200px;
+    }
+
+    .eyebrow {
+      margin: 0 0 1.1rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: clamp(.68rem, 1vw, .8rem);
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 10ch;
+      font-size: clamp(4.7rem, 14vw, 12rem);
+      line-height: .78;
+      letter-spacing: -.075em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .hero-sub {
+      margin: 2rem 0 0;
+      max-width: 34ch;
+      font-size: clamp(1.2rem, 2.3vw, 2rem);
+      line-height: 1.12;
+      letter-spacing: -.025em;
+    }
+
+    .hero-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 2rem;
+      padding-top: 3rem;
+    }
+
+    .hero-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.5;
+      max-width: 34ch;
+    }
+
+    .showreel {
+      display: inline-flex;
+      align-items: center;
+      gap: .8rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: .8rem 1rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      font-size: .72rem;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+
+    .showreel::before {
+      content: "▶";
+      font-size: .7rem;
+    }
+
+    .showreel:hover {
+      background: var(--ink);
+      color: var(--bg);
+      transform: translateY(-2px);
+    }
+
+    .strip {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: .85rem 0;
+      background: rgba(255,255,255,.015);
+    }
+
+    .marquee {
+      display: inline-block;
+      min-width: 200%;
+      animation: marquee 22s linear infinite;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .72rem;
+      color: var(--muted);
+    }
+
+    @keyframes marquee {
+      to { transform: translateX(-50%); }
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 1.4rem var(--page-pad) 2rem;
+      color: var(--muted);
+      font-size: .76rem;
+    }
+
+    .footer a {
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    @media (max-width: 720px) {
+      .nav a:not(:last-child) { display: none; }
+
+      .hero {
+        padding-top: 7rem;
+      }
+
+      .orb {
+        width: 94vw;
+        right: -45vw;
+        top: 18vh;
+        opacity: .8;
+      }
+
+      h1 {
+        font-size: clamp(4.4rem, 24vw, 7rem);
+      }
+
+      .hero-footer {
+        align-items: flex-start;
+        flex-direction: column-reverse;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: .5rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <a class="wordmark" href="#top">Tim Hansen</a>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="mailto:hello@timhansen.co.uk">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="orb" aria-hidden="true"></div>
+
+      <div class="hero-copy">
+        <p class="eyebrow">Television Editor · London</p>
+        <h1 id="heroTitle">Tim<br>Hansen</h1>
+        <p class="hero-sub">Editing science, history, culture and human stories with clarity, pace and character.</p>
+      </div>
+
+      <div class="hero-footer">
+        <p class="hero-note" id="about">
+          Award-winning factual television editor with more than 25 years' experience across landmark series, documentaries and specials.
+        </p>
+
+        <a class="showreel" href="#" aria-label="Watch Tim Hansen's showreel">
+          Watch showreel
+        </a>
+      </div>
+    </section>
+
+    <section class="strip" id="work" aria-label="Selected genres">
+      <div class="marquee">
+        Science · History · Culture · Engineering · Documentary · Human Stories ·
+        Science · History · Culture · Engineering · Documentary · Human Stories ·
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> Tim Hansen</span>
+    <span><a href="mailto:hello@timhansen.co.uk">hello@timhansen.co.uk</a></span>
+  </footer>
+
+  <script>
+    const header = document.getElementById('siteHeader');
+    const year = document.getElementById('year');
+
+    year.textContent = new Date().getFullYear();
+
+    const updateHeader = () => {
+      header.classList.toggle('scrolled', window.scrollY > 16);
+    };
+
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+  </script>
+</body>
+</html>

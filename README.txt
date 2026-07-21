@@ -1,13 +1,13 @@
-TIM HANSEN SITE — VERSION 1.5
+VERSION 1.7 TEST
 
-Upload every file and folder in this package to the root of the GitHub repository.
+This version corrects the Vimeo embed for the unlisted video:
 
-Important:
-- Keep the assets and images folders.
-- Keep the existing PDF named:
-  Editor_Tim_Hansen_CV_JUL2026.pdf
-- Add background stills to /images using:
-  hero-01.jpg through hero-06.jpg
+Video:
+https://vimeo.com/1211738798/7c6f1615a7
 
-The category tiles now open real HTML pages, so Chrome Back and Forward work normally.
-The category clip areas are placeholders ready for the final videos.
+Embed used:
+https://player.vimeo.com/video/1211738798?h=7c6f1615a7
+
+The privacy hash is required for an unlisted Vimeo video.
+Upload science.html and the assets folder for the quickest live test.
+Upload the complete contents for the full site update.
